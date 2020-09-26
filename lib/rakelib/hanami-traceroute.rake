@@ -1,8 +1,10 @@
 # frozen_string_literal: true
+require "rake"
+include Rake::DSL
 
 desc 'Prints out unused routes and unreachable action methods'
 task hanami_traceroute: :environment do
-  traceroute = HanamiTraceroute.new Hanami.app
+  traceroute = HanamiTraceroute
 
   unless ENV['UNREACHABLE_ACTION_METHODS_ONLY']
     puts "Unused routes (#{traceroute.unreachable_action_methods.count}):"
